@@ -15,5 +15,5 @@ public interface UserService {
      * 用户注册
      * @throws BusinessException
      */
-    public User register(User user) throws BusinessException;
+    public String register(User user) throws BusinessException;
 }
