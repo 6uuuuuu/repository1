@@ -1,11 +1,15 @@
 package com.pmc.ui;
 
+import com.pmc.utills.UserIO;
+
 /**
  * 欢迎登陆界面
  */
 public class WelcomClass extends BaseClass{
     public void start(){
         println(getString("info.welcome"));
+        UserIO userIO = new UserIO();
+        userIO.readUsers();//初始化users，读取全部用户信息
         String result = "";
         boolean flag = true;
         while(flag){
@@ -16,7 +20,8 @@ public class WelcomClass extends BaseClass{
                 case "1":
                     flag = false;
                     //System.out.println("登陆");
-
+                    result = new LoginClass().login();
+                    println(getString(result));
                     break;
                 case "2":
                     flag = false;

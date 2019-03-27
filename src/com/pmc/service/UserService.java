@@ -9,11 +9,18 @@ import com.pmc.utills.BusinessException;
  */
 public interface UserService {
     /**
-     *
-     * @param user
-     * @return User
      * 用户注册
+     * @param user
+     * @return
      * @throws BusinessException
      */
     public String register(User user) throws BusinessException;
+
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     * @throws BusinessException
+     */
+    public String login(User user) throws BusinessException;
 }
