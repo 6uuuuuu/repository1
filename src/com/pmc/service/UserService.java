@@ -14,7 +14,7 @@ public interface UserService {
      * @return
      * @throws BusinessException
      */
-    public boolean register(User user) throws BusinessException;
+    public void register(User user) throws BusinessException;
 
     /**
      * 用户登录
@@ -22,5 +22,5 @@ public interface UserService {
      * @return
      * @throws BusinessException
      */
-    public boolean login(User user) throws BusinessException;
+    public void login(User user) throws BusinessException;
 }

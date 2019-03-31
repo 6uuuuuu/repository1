@@ -10,18 +10,22 @@ public class WelcomClass extends BaseClass {
     public void start() {
         println(getString("info.welcome"));
         UserIO userIO = new UserIO();
-        userIO.readUsers();//初始化users，读取全部用户信息
-        String result = "";
-        boolean flag = false;
+        try {
+            userIO.readUsers();//初始化users，读取全部用户信息
+        } catch (BusinessException e) {
+            println(getString(e.getMessage()));
+        }
+        boolean flag = true;
 
-        while (!flag) {
+        while (flag) {
             println(getString("info.login.reg"));//1.登陆 2.注册
             println(getString("info.select"));//请选择
             String s = input.nextLine();//读取用户输入的内容
             switch (s) {
                 case "1":
                     try {
-                        flag = new LoginClass().login();
+                        currentUser = new LoginClass().login();
+                        flag = false;
                         println(getString("login.success"));
                     } catch (BusinessException e) {
                         println(getString(e.getMessage()));
@@ -29,8 +33,9 @@ public class WelcomClass extends BaseClass {
                     break;
                 case "2":
                     try {
-                    flag = new RegisterClass().Register();
-                    println(getString("reg.success"));
+                        currentUser = new RegisterClass().Register();
+                        flag = false;
+                        println(getString("reg.success"));
                     } catch (BusinessException e) {
                         println(getString(e.getMessage()));
                     }
@@ -38,6 +43,13 @@ public class WelcomClass extends BaseClass {
                 default:
                     println(getString("input.error"));//输入错误则继续读取直到用户输入正确的信息
                     break;
+            }
+        }
+        if (currentUser.getUsername().equals(getString("system.admin"))) {
+            println(getString("system.user.message"));
+            String s = input.nextLine();
+            if("Y".equals(s)) {
+                UserIO.printAllUsers();
             }
         }
 

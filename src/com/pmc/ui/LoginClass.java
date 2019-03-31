@@ -9,13 +9,14 @@ import com.pmc.service.impl.UserServiceImpl;
  */
 public class LoginClass extends BaseClass {
     //进行登录的方法
-    public boolean login(){
+    public User login(){
         println(getString("input.username"));
         String userName = input.nextLine();
         println(getString("input.password"));
         String passWord = input.nextLine();
         User user = new User(userName,passWord);
         UserService userService = new UserServiceImpl();
-        return userService.login(user);
+        userService.login(user);
+        return user;
     }
 }

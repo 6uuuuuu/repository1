@@ -5,6 +5,16 @@ import java.io.Serializable;
 public class User implements Serializable {
     private int id;
     private String username;//用户名
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     private String password;//用户登录密码
 
     public User() {

@@ -41,11 +41,25 @@ public class UserIO {
     //查找用户信息
     public boolean findUsers(User user) {
         for (User u : users) {
-            if ((u.getUsername().equals(user.getUsername()))&&(u.getPassword().equals(user.getPassword()))) {
+            if ((u.getUsername().equals(user.getUsername())) && (u.getPassword().equals(user.getPassword()))) {
                 return true;
             }
-        }return false;
+        }
+        return false;
     }
-
+    //查找用户名信息
+    public boolean findUserNames(User user) {
+        for (User u : users) {
+            if ((u.getUsername().equals(user.getUsername())) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void printAllUsers() {
+       for (User u : users) {
+            System.out.println(u.toString());
+        }
+    }
 
 }

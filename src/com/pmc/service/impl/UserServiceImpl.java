@@ -7,7 +7,6 @@ import com.pmc.utills.EmptyUtils;
 import com.pmc.utills.UserIO;
 
 public class UserServiceImpl implements UserService {
-    boolean flag = false;
 
     /**
      * 对注册的用户信息进行操作，比如存储
@@ -18,18 +17,17 @@ public class UserServiceImpl implements UserService {
      * @throws BusinessException
      */
     @Override
-    public boolean register(User user) throws BusinessException {
+    public void register(User user) throws BusinessException {
         UserIO userIO = new UserIO();
-        if(userIO.findUsers(user)){
+        if(userIO.findUserNames(user)){
             throw new BusinessException("user.exist");//用户已存在时不能注册
         }
         userIO.addUsers(user);
         userIO.writeUsers(user);//注册成功or失败
-        return true;
     }
 
     @Override
-    public boolean login(User user) throws BusinessException {
+    public void login(User user) throws BusinessException {
         if (EmptyUtils.isEmpty(user.getUsername())) {
             throw new BusinessException("username.notnull");
         }
@@ -37,10 +35,9 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException("password.notnull");
         }
         UserIO userIO = new UserIO();
-        flag = userIO.findUsers(user);//登录成功or失败
-        if (flag) {
-            return true;
-        } else {
+        boolean flag = userIO.findUsers(user);//登录成功or失败
+        if (!flag) {
+            //未查找到用户则登录失败
             throw new BusinessException("login.error");
         }
 
