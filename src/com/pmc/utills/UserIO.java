@@ -11,24 +11,22 @@ public class UserIO {
     private static final String USER_FILE = "user.obj";
 
     //写入用户信息
-    public boolean writeUsers(User user) throws BusinessException {
+    public void writeUsers(User user) {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USER_FILE));
             oos.writeObject(users);
             oos.close();
-            return true;
         } catch (IOException e) {
             throw new BusinessException("io.write.error");
         }
     }
 
     //读取用户信息
-    public boolean readUsers() throws BusinessException {
+    public void readUsers() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(USER_FILE));
             users = (List<User>) ois.readObject();//users为类的静态变量，因此该方法不需要返回一个List<User>的值
             ois.close();
-            return true;
         } catch (IOException | ClassNotFoundException e) {
             throw new BusinessException("io.read.error");
         }
