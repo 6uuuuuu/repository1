@@ -18,22 +18,24 @@ public class WelcomClass extends BaseClass{
             String s = input.nextLine();//读取用户输入的内容
             switch (s){
                 case "1":
-                    flag = false;
                     //System.out.println("登陆");
                     result = new LoginClass().login();
                     println(getString(result));
+                    flag = false;
                     break;
                 case "2":
-                    flag = false;
                     //System.out.println("注册");
                     result = new RegisterClass().Register();
                     println(getString(result));
+                    flag = false;
                     break;
                 default:
                     println(getString("input.error"));//输入错误则继续读取直到用户输入正确的信息
                     break;
             }
-
         }
+        //循环结束后进入展示商品的主界面
+        HomeClass home = new HomeClass();
+        home.show();
     }
 }

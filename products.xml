@@ -6,7 +6,7 @@
         <size>M</size>
         <style>STYLE1</style>
         <description>T恤</description>
-        <price>50.00</price>
+        <price>50.0</price>
         <num>900</num>
     </clothes>
     <clothes id = "A002">
@@ -15,7 +15,7 @@
         <size>S</size>
         <style>STYLE2</style>
         <description>外套</description>
-        <price>299.00</price>
+        <price>299.0</price>
         <num>100</num>
     </clothes>
     <clothes id = "A003">
@@ -24,7 +24,7 @@
         <size>L</size>
         <style>STYLE3</style>
         <description>围巾</description>
-        <price>55.00</price>
+        <price>55.0</price>
         <num>30</num>
     </clothes>
     <clothes id = "A004">
@@ -33,7 +33,7 @@
         <size>S</size>
         <style>STYLE4</style>
         <description>帽子</description>
-        <price>35.00</price>
+        <price>35.0</price>
         <num>180</num>
     </clothes>
     <clothes id = "A005">
@@ -42,7 +42,7 @@
         <size>M</size>
         <style>STYLE5</style>
         <description>毛衣</description>
-        <price>89.00</price>
+        <price>89.0</price>
         <num>123</num>
     </clothes>
     <clothes id = "B001">
@@ -51,7 +51,7 @@
         <size>M</size>
         <style>STYLE6</style>
         <description>衬衣</description>
-        <price>123.00</price>
+        <price>123.0</price>
         <num>308</num>
     </clothes>
     <clothes id = "B002">
@@ -60,7 +60,7 @@
         <size>S</size>
         <style>STYLE7</style>
         <description>牛仔裤</description>
-        <price>100.00</price>
+        <price>100.0</price>
         <num>500</num>
     </clothes>
     <clothes id = "B003">
@@ -69,7 +69,7 @@
         <size>L</size>
         <style>STYLE8</style>
         <description>连衣裙</description>
-        <price>120.00</price>
+        <price>120.0</price>
         <num>230</num>
     </clothes>
 </list>
