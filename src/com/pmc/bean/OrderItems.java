@@ -49,4 +49,13 @@ public class OrderItems implements Serializable {
     public void setSum(float sum) {
         this.sum = sum;
     }
+
+    @Override
+    public String toString() {
+        return "OrderItems{" +
+                "itemId='" + itemId + '\'' +
+                ", shoppingNum=" + shoppingNum +
+                ", sum=" + sum +
+                '}';
+    }
 }

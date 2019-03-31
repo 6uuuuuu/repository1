@@ -1,6 +1,8 @@
 package com.pmc.utils;
 
 import com.pmc.bean.Order;
+import com.pmc.bean.OrderItems;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,9 +14,9 @@ import java.util.List;
 public class OrderIO {
     private static List<Order> orders = new ArrayList<>();
     private static final String ORDER_FILE = "order.obj";
-
+    Order order = new Order();
     //写入订单信息
-    public void writeOrders(Order order) {
+    public void writeOrders(Order order) throws BusinessException{
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ORDER_FILE));
             oos.writeObject(orders);
@@ -25,12 +27,13 @@ public class OrderIO {
     }
 
     //读取订单信息
-    public void readOrders() {
+    public void readOrders() throws BusinessException{
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ORDER_FILE));
-            orders = (List<Order>) ois.readObject();//orders为类的静态变量，因此该方法不需要返回一个List<User>的值
+            orders = (List<Order>) ois.readObject();//orders为类的静态变量，因此该方法不需要返回一个List<Order>的值
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
+            writeOrders(new Order());
             throw new BusinessException("io.order.read.error");
         }
     }
@@ -46,7 +49,7 @@ public class OrderIO {
      * @param userId
      * @return
      */
-    public List<Order> findOrdersrbyUserId(int userId) {
+    public List<Order> findOrdersbyUserId(int userId) {
         List<Order> userOrders = null;
         for (Order o : orders) {
             if (o.getUserId() == userId) {
@@ -76,6 +79,10 @@ public class OrderIO {
     public static void printAllOrders() {
         for (Order o : orders) {
             System.out.println(o.toString());
+            for (OrderItems items:o.getOrderItemsList() ) {
+                System.out.println(items.toString());
+                System.out.println(items.getClothes().toString());
+            }
         }
     }
 

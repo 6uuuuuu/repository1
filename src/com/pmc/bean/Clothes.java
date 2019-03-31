@@ -92,4 +92,18 @@ public class Clothes implements Serializable {
     public void setNum(int num) {
         this.num = num;
     }
+
+    @Override
+    public String toString() {
+        return "Clothes{" +
+                "id='" + id + '\'' +
+                ", brand='" + brand + '\'' +
+                ", color='" + color + '\'' +
+                ", size='" + size + '\'' +
+                ", style='" + style + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", num=" + num +
+                '}';
+    }
 }

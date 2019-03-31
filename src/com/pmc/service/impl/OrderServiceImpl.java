@@ -1,24 +1,41 @@
 package com.pmc.service.impl;
 
 import com.pmc.bean.Order;
+import com.pmc.bean.OrderItems;
 import com.pmc.service.OrderService;
 import com.pmc.utils.BusinessException;
+import com.pmc.utils.OrderIO;
 
 import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
-    @Override
-    public void addOrder() throws BusinessException {
-
-    }
+    OrderIO orderIO = new OrderIO();
 
     @Override
-    public List<Order> findOwnOrders() throws BusinessException {
+    public List<Order> findOwnOrders(int userId) throws BusinessException {
+        List<Order> ords = orderIO.findOrdersbyUserId(userId);
         return null;
     }
 
     @Override
-    public Order findOrderbySth() throws BusinessException {
-        return null;
+    public Order findOrderbySth(int orderId) throws BusinessException {
+        Order o=orderIO.findOrderbyOrderId(orderId);
+        printOrders4User((List<Order>) o);
+        return o;
+    }
+
+    @Override
+    public void creatOrder(Order order) throws BusinessException {
+        orderIO.writeOrders(order);
+    }
+
+    public void printOrders4User(List<Order> ords) {
+        for (Order o : ords) {
+            System.out.println(o.toString());
+            for (OrderItems items:o.getOrderItemsList() ) {
+                System.out.println(items.toString());
+                System.out.println(items.getClothes().toString());
+            }
+        }
     }
 }

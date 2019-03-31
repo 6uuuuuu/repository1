@@ -9,8 +9,8 @@ import java.util.List;
  * 对订单进行操作的接口
  */
 public interface OrderService {
-    public void addOrder() throws BusinessException;
-    public List<Order> findOwnOrders() throws BusinessException;
-    public Order findOrderbySth() throws BusinessException;
+    public List<Order> findOwnOrders(int userId) throws BusinessException;
+    public Order findOrderbySth(int orderId) throws BusinessException;
+    public void creatOrder(Order order) throws BusinessException;
 
 }

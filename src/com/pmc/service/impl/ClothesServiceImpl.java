@@ -18,7 +18,7 @@ public class ClothesServiceImpl implements ClothesService {
     public Clothes findClothesbyClothesId(String buyId, int buyNum) throws BusinessException {
         List<Clothes> clothesList = getClothesList();
         for (Clothes c : clothesList) {
-            if (c.getId() == buyId && c.getNum() > buyNum) {
+            if (c.getId().equals(buyId)  && c.getNum() > buyNum) {
                 //商品存在且库存数大于购买数时才返回该商品信息
                 return c;
             }
