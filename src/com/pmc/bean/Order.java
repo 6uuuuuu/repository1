@@ -1,6 +1,6 @@
 package com.pmc.bean;
 
-import com.pmc.utills.OrderStatusType;
+import com.pmc.utils.OrderStatusType;
 
 import java.io.Serializable;
 import java.util.ArrayList;

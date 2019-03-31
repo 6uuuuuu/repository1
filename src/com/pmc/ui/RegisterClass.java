@@ -3,7 +3,7 @@ package com.pmc.ui;
 import com.pmc.bean.User;
 import com.pmc.service.UserService;
 import com.pmc.service.impl.UserServiceImpl;
-import com.pmc.utills.BusinessException;
+import com.pmc.utils.BusinessException;
 
 /**
  * 选择2后，用户进行注册

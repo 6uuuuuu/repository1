@@ -2,8 +2,8 @@ package com.pmc.service.impl;
 
 import com.pmc.bean.Clothes;
 import com.pmc.service.ClothesService;
-import com.pmc.utills.BusinessException;
-import com.pmc.utills.ProductXmlUtils;
+import com.pmc.utils.BusinessException;
+import com.pmc.utils.ProductXmlUtils;
 
 import java.util.List;
 

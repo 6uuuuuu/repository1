@@ -1,4 +1,4 @@
-package com.pmc.utills;
+package com.pmc.utils;
 
 import com.pmc.ui.WelcomClass;
 

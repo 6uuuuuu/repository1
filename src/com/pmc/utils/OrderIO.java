@@ -1,4 +1,4 @@
-package com.pmc.utills;
+package com.pmc.utils;
 
 import com.pmc.bean.Order;
 
@@ -24,7 +24,7 @@ public class OrderIO {
         }
     }
 
-    //读取用户信息
+    //读取订单信息
     public void readOrders() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ORDER_FILE));
@@ -69,4 +69,14 @@ public class OrderIO {
         }
         return null;
     }
+
+    /**
+     * 用于管理员查看全部订单信息
+     */
+    public static void printAllOrders() {
+        for (Order o : orders) {
+            System.out.println(o.toString());
+        }
+    }
+
 }

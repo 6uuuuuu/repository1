@@ -1,4 +1,4 @@
-package com.pmc.utills;
+package com.pmc.utils;
 
 public enum OrderStatusType {
     UNPAID,//未付款

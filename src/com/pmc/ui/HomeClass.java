@@ -6,9 +6,9 @@ import com.pmc.bean.OrderItems;
 import com.pmc.bean.User;
 import com.pmc.service.ClothesService;
 import com.pmc.service.impl.ClothesServiceImpl;
-import com.pmc.utills.BusinessException;
-import com.pmc.utills.ConsoleTable;
-import com.pmc.utills.OrderIO;
+import com.pmc.utils.BusinessException;
+import com.pmc.utils.ConsoleTable;
+import com.pmc.utils.OrderIO;
 
 import java.util.List;
 
@@ -17,9 +17,10 @@ import java.util.List;
  */
 public class HomeClass extends BaseClass {
     ClothesService clothesService = new ClothesServiceImpl();
-
+    OrderIO orderIO = new OrderIO();
     public void show() {
         showClothesList();//展示商品
+        orderIO.readOrders();//读取已存在的订单信息，初始化orders
         boolean flag = true;
         while (flag) {
             println(getString("home.function"));//1、查询全部订单 2、查找订单 3、购买 0、退出
@@ -59,13 +60,21 @@ public class HomeClass extends BaseClass {
                     break;
             }
         }
+        if (currentUser.getUsername().equals(getString("system.admin"))) {
+            println(getString("system.order.message"));
+            String s = input.nextLine();
+            if("Y".equals(s)) {
+                OrderIO.printAllOrders();
+            }
+        }
     }
 
     private void buyProducts(User currentUser) throws BusinessException {
         int count = 0;
         boolean flag = true;
+        Order order = new Order();
         while (flag) {
-            //生成订单
+            //生成订单明细
             println(getString("buy.id"));
             String buyId = input.nextLine();
             println(getString("buy.num"));
@@ -74,12 +83,18 @@ public class HomeClass extends BaseClass {
             if (buyclothes == null) {
                 throw new BusinessException("products.notexist");
             }
+            //订单明细
             OrderItems orderItems = new OrderItems("item-" + (++count),
                     buyclothes, buyNum, buyclothes.getPrice() * buyNum);
-            Order order = new Order();
-            OrderIO orderIO = new OrderIO();
-            orderIO.addOrders(order);
+            order.getOrderItemsList().add(orderItems);//将明细加入订单中
+            println(getString("buy.continue"));//是否继续添加商品
+            String s = input.nextLine();
+            if(!"Y".equals(s)){
+                flag = false;//退出生成订单明细的过程
+            }
         }
+        //生成一个完整的订单
+        orderIO.addOrders(order);
     }
 
     private void findOrder() {

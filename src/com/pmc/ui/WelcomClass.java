@@ -1,7 +1,7 @@
 package com.pmc.ui;
 
-import com.pmc.utills.BusinessException;
-import com.pmc.utills.UserIO;
+import com.pmc.utils.BusinessException;
+import com.pmc.utils.UserIO;
 
 /**
  * 欢迎登陆界面

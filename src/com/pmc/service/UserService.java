@@ -1,7 +1,7 @@
 package com.pmc.service;
 
 import com.pmc.bean.User;
-import com.pmc.utills.BusinessException;
+import com.pmc.utils.BusinessException;
 
 /**
  * 对用户进行业务操作

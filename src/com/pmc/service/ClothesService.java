@@ -1,7 +1,7 @@
 package com.pmc.service;
 
 import com.pmc.bean.Clothes;
-import com.pmc.utills.BusinessException;
+import com.pmc.utils.BusinessException;
 
 import java.util.List;
 

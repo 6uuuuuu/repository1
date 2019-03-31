@@ -1,4 +1,4 @@
-package com.pmc.utills;
+package com.pmc.utils;
 
 public class EmptyUtils {
     public static boolean isEmpty(String s){
