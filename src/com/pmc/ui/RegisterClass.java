@@ -15,7 +15,7 @@ public class RegisterClass extends BaseClass {
      * @return
      * @throws BusinessException
      */
-    public String Register() throws BusinessException {
+    public boolean Register() throws BusinessException {
         println(getString("input.username"));
         String userName = input.nextLine();//用户输入的用户名
         println(getString("input.password"));

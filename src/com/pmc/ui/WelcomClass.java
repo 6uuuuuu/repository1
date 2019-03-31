@@ -12,27 +12,25 @@ public class WelcomClass extends BaseClass {
         UserIO userIO = new UserIO();
         userIO.readUsers();//初始化users，读取全部用户信息
         String result = "";
-        boolean flag = true;
+        boolean flag = false;
 
-        while (flag) {
+        while (!flag) {
             println(getString("info.login.reg"));//1.登陆 2.注册
             println(getString("info.select"));//请选择
             String s = input.nextLine();//读取用户输入的内容
             switch (s) {
                 case "1":
                     try {
-                        result = new LoginClass().login();
-                        println(getString(result));
-                        flag = false;
+                        flag = new LoginClass().login();
+                        println(getString("login.success"));
                     } catch (BusinessException e) {
                         println(getString(e.getMessage()));
                     }
                     break;
                 case "2":
                     try {
-                    result = new RegisterClass().Register();
-                    println(getString(result));
-                    flag = false;
+                    flag = new RegisterClass().Register();
+                    println(getString("reg.success"));
                     } catch (BusinessException e) {
                         println(getString(e.getMessage()));
                     }

@@ -18,18 +18,18 @@ public class UserServiceImpl implements UserService {
      * @throws BusinessException
      */
     @Override
-    public String register(User user) throws BusinessException {
+    public boolean register(User user) throws BusinessException {
         UserIO userIO = new UserIO();
         if(userIO.findUsers(user)){
             throw new BusinessException("user.exist");//用户已存在时不能注册
         }
         userIO.addUsers(user);
         userIO.writeUsers(user);//注册成功or失败
-        return "reg.success";
+        return true;
     }
 
     @Override
-    public String login(User user) throws BusinessException {
+    public boolean login(User user) throws BusinessException {
         if (EmptyUtils.isEmpty(user.getUsername())) {
             throw new BusinessException("username.notnull");
         }
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         UserIO userIO = new UserIO();
         flag = userIO.findUsers(user);//登录成功or失败
         if (flag) {
-            return "login.success";
+            return true;
         } else {
             throw new BusinessException("login.error");
         }
