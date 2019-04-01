@@ -91,7 +91,7 @@ public class HomeClass extends BaseClass {
             } catch (NumberFormatException e) {
                 throw new BusinessException("input.error");
             }
-            Clothes buyClothes = clothesService.findClothesbyClothesId(buyId, buyNum);
+            Clothes buyClothes = clothesService.findClothesByClothesId(buyId, buyNum);
             if (buyClothes == null) {
                 throw new BusinessException("products.notexist");
             }
@@ -114,6 +114,9 @@ public class HomeClass extends BaseClass {
         order.setCreatDate(DateUtils.toDate(new Date()));//获取当前时间 System.currentTimeMillis()
         orderIO.addOrders(order);//为orders添加订单信息
         orderService.creatOrder(order);//将订单信息存入obj中
+        //将变更后的商品信息写入xml文件中
+        clothesService.alterClothesByClothesId();
+        showClothesList();
     }
 
     private void findOrder() throws BusinessException{
