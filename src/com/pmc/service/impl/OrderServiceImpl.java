@@ -14,13 +14,18 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findOwnOrders(int userId) throws BusinessException {
         List<Order> ords = orderIO.findOrdersbyUserId(userId);
-        return null;
+        printOrders4User(ords);
+        return ords;
     }
 
     @Override
     public Order findOrderbySth(int orderId) throws BusinessException {
         Order o=orderIO.findOrderbyOrderId(orderId);
-        printOrders4User((List<Order>) o);
+        System.out.println(o.toString());
+        for (OrderItems items:o.getOrderItemsList() ) {
+            System.out.println(items.toString());
+            System.out.println(items.getClothes().toString());
+        }
         return o;
     }
 

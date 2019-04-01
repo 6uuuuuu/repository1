@@ -26,7 +26,6 @@ public class HomeClass extends BaseClass {
         showClothesList();//展示商品
        try {
             orderIO.readOrders();
-           OrderIO.printAllOrders();
         } catch (BusinessException e) {
             println(getString(e.getMessage()));
         }
@@ -39,7 +38,6 @@ public class HomeClass extends BaseClass {
                 case "1":
                     try {
                         findAllOrders();
-                        flag = false;
                     } catch (BusinessException e) {
                         println(getString(e.getMessage()));
                     }
@@ -47,7 +45,6 @@ public class HomeClass extends BaseClass {
                 case "2":
                     try {
                         findOrder();
-                        flag = false;
                     } catch (BusinessException e) {
                         println(getString(e.getMessage()));
                     }
@@ -55,7 +52,6 @@ public class HomeClass extends BaseClass {
                 case "3":
                     try {
                         buyProducts();
-                        flag = false;
                     } catch (BusinessException e) {
                         println(getString(e.getMessage()));
                     }
@@ -73,7 +69,7 @@ public class HomeClass extends BaseClass {
             println(getString("system.order.message"));
             String s = input.nextLine();
             if("Y".equals(s)) {
-                OrderIO.printAllOrders();
+                orderIO.printAllOrders();
             }
         }
     }
@@ -95,13 +91,13 @@ public class HomeClass extends BaseClass {
             } catch (NumberFormatException e) {
                 throw new BusinessException("input.error");
             }
-            Clothes buyclothes = clothesService.findClothesbyClothesId(buyId, buyNum);
-            if (buyclothes == null) {
+            Clothes buyClothes = clothesService.findClothesbyClothesId(buyId, buyNum);
+            if (buyClothes == null) {
                 throw new BusinessException("products.notexist");
             }
             //订单明细
             OrderItems orderItems = new OrderItems("item-" + (++count),
-                    buyclothes, buyNum, buyclothes.getPrice() * buyNum);
+                    buyClothes, buyNum, buyClothes.getPrice() * buyNum);
             order.getOrderItemsList().add(orderItems);//将明细加入订单中
             sum = sum +orderItems.getSum();//订单总额为明细之和
             println(getString("buy.continue"));//是否继续添加商品

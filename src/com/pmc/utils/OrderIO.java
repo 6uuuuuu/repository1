@@ -2,7 +2,6 @@ package com.pmc.utils;
 
 import com.pmc.bean.Order;
 import com.pmc.bean.OrderItems;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.List;
 public class OrderIO {
     private static List<Order> orders = new ArrayList<>();
     private static final String ORDER_FILE = "order.obj";
-    Order order = new Order();
     //写入订单信息
     public void writeOrders(Order order) throws BusinessException{
         try {
@@ -50,7 +48,7 @@ public class OrderIO {
      * @return
      */
     public List<Order> findOrdersbyUserId(int userId) {
-        List<Order> userOrders = null;
+        List<Order> userOrders = new ArrayList<>();
         for (Order o : orders) {
             if (o.getUserId() == userId) {
                 userOrders.add(o);
